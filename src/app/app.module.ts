@@ -30,6 +30,7 @@ import { MainComponent } from './components/main/main.component';
     RouterModule.forRoot([
       {path: 'porfolio', component: MainComponent},
       {path: 'login', component: LoginComponent},
+      {path: '', redirectTo:'/porfolio', pathMatch: 'full'}
     ])
   ],
   providers: [],
