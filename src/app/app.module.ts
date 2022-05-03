@@ -9,6 +9,10 @@ import { EducationComponent } from './components/education/education.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 
+import { RouterModule } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +22,15 @@ import { ExperienceComponent } from './components/experience/experience.componen
     EducationComponent,
     SkillsComponent,
     ExperienceComponent,
+    LoginComponent,
+    MainComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path: 'porfolio', component: MainComponent},
+      {path: 'login', component: LoginComponent},
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
