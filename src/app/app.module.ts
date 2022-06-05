@@ -13,6 +13,8 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 
+import { HttpClient, HttpClientModule} from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { MainComponent } from './components/main/main.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: 'porfolio', component: MainComponent},
       {path: 'login', component: LoginComponent},

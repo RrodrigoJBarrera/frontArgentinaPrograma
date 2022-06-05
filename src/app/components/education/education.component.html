@@ -1,4 +1,6 @@
 <p class="h2 text-center mt-3 mb-3">EDUCACIÓN</p>
+<div *ngFor="let d of educacionList">
+
 <div class="container shadow text-center bg-light">
   <div class="row pt-3">
     <div class="column">
@@ -11,10 +13,12 @@
           class="d-inline-block align-top"
         />
       </p>
-      <p>Programador Web Full Stack Jr</p>
-      <p>Plan Argentina Programa</p>
-      <p>2021-2022</p>
+      <p>{{d.titulo}}</p>
+      <p>{{d.institucion}}</p>
+      <p>{{d.anio_inicio}} - {{d.anio_finalizacion}}</p>
     </div>
   </div>
   <div class="row justify-content-center bg-primary text-light p-1"></div>
+</div>
+
 </div>
