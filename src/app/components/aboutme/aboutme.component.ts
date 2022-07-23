@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { persona } from 'src/app/model/persona.model'
+import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 
 @Component({
@@ -8,15 +8,13 @@ import { PersonaService } from 'src/app/service/persona.service';
   styleUrls: ['./aboutme.component.css'],
 })
 export class AboutmeComponent implements OnInit {
+  persona: persona = new persona('', '', '', '', '', '', '', '', '', '');
 
-  persona: persona = new persona("", "", "", "", "", "", "", "", "");
-
-  constructor(public personaService: PersonaService) { }
+  constructor(public personaService: PersonaService) {}
 
   ngOnInit(): void {
-
-    this.personaService.getPersona().subscribe(data => { this.persona = data })
+    this.personaService.obtenerPersona().subscribe((data) => {
+      this.persona = data;
+    });
   }
-
-
 }

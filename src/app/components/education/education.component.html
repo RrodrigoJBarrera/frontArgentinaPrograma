@@ -1,24 +1,150 @@
-<p class="h2 text-center mt-3 mb-3">EDUCACIÓN</p>
-<div *ngFor="let d of educacionList">
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="educacionModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo</h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="educacionForm" (ngSubmit)="onSubmit()">
+          <input type="hidden" name="id" formControlName="id" />
+          <input type="hidden" name="persona" formControlName="persona" />
+          <div class="form-group">
+            <label for="titulo">Titulo o Certificado</label>
+            <input
+              type="text"
+              formControlName="titulo"
+              name="titulo"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.educacionForm.get('titulo')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="institucion">Institucion</label>
+            <input
+              type="text"
+              formControlName="institucion"
+              name="institucion"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.educacionForm.get('institucion')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Año de Finalizacion</label>
+            <input
+              type="number"
+              formControlName="anio_finalizacion"
+              name="anio_finalizacion"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.educacionForm.get('anio_finalizacion')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
 
-<div class="container shadow text-center bg-light">
-  <div class="row pt-3">
-    <div class="column">
-      <p>
-        <img
-          src="assets/APLogo-20-20.png"
-          width="120"
-          height="45"
-          alt="Logo Argentina Programa"
-          class="d-inline-block align-top"
-        />
-      </p>
-      <p>{{d.titulo}}</p>
-      <p>{{d.institucion}}</p>
-      <p>{{d.anio_inicio}} - {{d.anio_finalizacion}}</p>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-  <div class="row justify-content-center bg-primary text-light p-1"></div>
 </div>
+<!-- FIN MODAL -->
 
+<p class="h2 text-center text-muted mt-5 mb-5">EDUCACIÓN</p>
+
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-6 pt-2" *ngFor="let edu of educacionList; let i = index">
+      <div class="card shadow text-center border bg-light pt-2">
+        <div class="container bg-dark btn-links p-2">
+          <div
+            *ngIf="userLogin == 1"
+            class="row justify-content-end text-light"
+          >
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#educacionModalCenter"
+                (click)="onEditEducacion(i)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </div>
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-danger"
+                (click)="onDeleteEducacion(i)"
+              >
+                <i class="bi bi-x-square"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="pt-3">
+          <!-- <img src="{{ edu.img }}" width="35" height="30" alt="" /> -->
+          <i class="bi bi-mortarboard-fill" style="font-size: 2rem"></i>
+        </p>
+        <p class="lead">{{ edu.titulo }}</p>
+        <p class="text-muted">{{ edu.institucion }}</p>
+        <p class="text-muted">{{ edu.anio_finalizacion }}</p>
+      </div>
+    </div>
+    <div *ngIf="userLogin == 1" class="col-md-6 pt-5 pb-5 align-self-center">
+      <button
+        type="button"
+        class="btn btn-success"
+        data-bs-toggle="modal"
+        data-bs-target="#educacionModalCenter"
+        (click)="onNewEducacion()"
+      >
+        <i class="bi bi-plus-square"></i>
+      </button>
+    </div>
+
+    <span class="pb-5"></span>
+  </div>
 </div>

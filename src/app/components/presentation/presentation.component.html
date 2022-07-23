@@ -1,61 +1,310 @@
-<div class="container text-center text-muted bg-light pt-5 pb-3">
-  <div class="column">
-      <img
-        class="h-auto mx-auto mw-auto bg-light rounded-3"
-        width="200"
-        src="assets/cvfoto.png"
-        alt=""
-      />
-      <div class="pt-3">
-        <i class="bi bi-chat-square-quote"></i>
-        <p class="h3"><strong>HOLA</strong></p>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="personaModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo</h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <h1 class="pt-2">Soy <strong>Rodrigo Barrera</strong></h1>
-      <p class="lead pt-2 pb-3">Desarrollador Web Full Stack Jr</p>
-      <div class="container pt-3 bg-secondary rounded-3">
-  <div class="row justify-content-center">
-    <div class="col col-sm-2 lead text-md-start text-white">
-      <strong>Edad</strong>
-    </div>
-    <div class="col-sm-2 lead text-md-start text-light">
-      29
-    </div>
-    <div class="w-100 p-2"></div>
-     <div class="col-sm-2 lead text-md-start text-white">
-      <strong>Dirección</strong>
-    </div>
-    <div class="col-sm-2 lead text-md-start text-light">
-      Cordoba, Capital
-    </div>
- <div class="w-100 p-2"></div>
-     <div class="col-sm-2 lead text-md-start text-white">
-      <strong>E-mail</strong>
-    </div>
-    <div class="col-sm-2 lead text-md-start text-light">
-      rbarrera028@gmail.com
-    </div>
- <div class="w-100 p-2"></div>
-     <div class="col-sm-2 lead text-md-start text-white">
-      <strong>Telefono</strong>
-    </div>
-    <div class="col-sm-2 lead text-md-start pb-3 text-light">
-      351-3200517
-    </div>
-    <div class="container bg-dark rounded-bottom btn-links">
-      <div class="row justify-content-center text-light">
-        <div class="col-auto">
-          <i class="bi bi-linkedin"></i>
-        </div>
-        <div class="col-auto">
-          <i class="bi bi-github"></i>
-        </div>
-        <div class="col-auto">
-          <i class="bi bi-envelope-fill"></i>
-        </div>
-      </div>
-    </div>
+      <div class="modal-body">
+        <form [formGroup]="personaForm" (ngSubmit)="onSubmit()">
+          <input type="hidden" name="id" formControlName="id" />
+          <div class="form-group">
+            <label for="descripcion">Nombre</label>
+            <input
+              type="text"
+              formControlName="nombre"
+              name="nombre"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('nombre')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Apellido</label>
+            <input
+              type="text"
+              formControlName="apellido"
+              name="apellido"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('apellido')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Profesion</label>
+            <input
+              type="text"
+              formControlName="profesion"
+              name="profesion"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('profesion')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Edad</label>
+            <input
+              type="number"
+              formControlName="edad"
+              name="edad"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('edad')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Direccion</label>
+            <input
+              type="text"
+              formControlName="direccion"
+              name="direccion"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('direccion')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">E-Mail</label>
+            <input
+              type="text"
+              formControlName="email"
+              name="email"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('email')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Telefono</label>
+            <input
+              type="text"
+              formControlName="telefono"
+              name="telefono"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('telefono')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Linkedin</label>
+            <input
+              type="text"
+              formControlName="linkedin"
+              name="linkedin"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('linkedin')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">github</label>
+            <input
+              type="text"
+              formControlName="github"
+              name="github"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('github')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Link Descarga Cv</label>
+            <input
+              type="text"
+              formControlName="linkcv"
+              name="linkcv"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('linkcv')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Sobre Mi</label>
+            <textarea
+              formControlName="sobremi"
+              name="sobremi"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+              rows="4"
+            ></textarea>
+            <span
+              class="text-danger"
+              *ngIf="this.personaForm.get('sobremi')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
 
-  </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
       </div>
+    </div>
   </div>
+</div>
+<!-- FIN MODAL -->
+
+<img
+  class="position-absolute w-100"
+  height="720px"
+  src="assets/wallp.jpg"
+  alt=""
+/>
+<div class="container position-relative text-center text-white pt-5 pb-3">
+  <!-- <div class="column"> -->
+  <img
+    class="h-auto mx-auto mw-auto rounded-3"
+    width="200"
+    src="assets/cvfoto.png"
+    alt=""
+  />
+  <div class="pt-3">
+    <i class="bi bi-chat-square-quote"></i>
+    <p class="h3"><strong>HOLA</strong></p>
+  </div>
+  <h1 class="pt-2">
+    Soy <strong>{{ p.nombre }} {{ p.apellido }}</strong>
+  </h1>
+  <p class="lead pt-2 pb-3">{{ p.profesion }}</p>
+  <div *ngIf="userLogin == 1" class="container bg-dark btn-links p-2">
+    <div class="row justify-content-center justify-content-md-end text-light">
+      <div class="col-auto">
+        <button
+          type="button"
+          class="btn btn-sm btn-warning"
+          data-bs-toggle="modal"
+          data-bs-target="#personaModalCenter"
+          (click)="onEditPersona()"
+        >
+          <i class="bi bi-pencil-square"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container pt-3 bg-secondary shadow-lg rounded-3">
+    <div class="row justify-content-center">
+      <div class="col col-md-2 lead text-md-start text-white">
+        <strong>Edad</strong>
+      </div>
+      <div class="col-md-2 lead text-md-start text-light">
+        {{ p.edad }}
+      </div>
+      <div class="w-100 p-2"></div>
+      <div class="col-md-2 lead text-md-start text-white">
+        <strong>Dirección</strong>
+      </div>
+      <div class="col-md-2 lead text-md-start text-light">
+        {{ p.direccion }}
+      </div>
+      <div class="w-100 p-2"></div>
+      <div class="col-md-2 lead text-md-start text-white">
+        <strong>E-mail</strong>
+      </div>
+      <div class="col-md-2 lead text-md-start text-light">
+        {{ p.email }}
+      </div>
+      <div class="w-100 p-2"></div>
+      <div class="col-md-2 lead text-md-start text-white">
+        <strong>Telefono</strong>
+      </div>
+      <div class="col-md-2 lead text-md-start pb-3 text-light">
+        {{ p.telefono }}
+      </div>
+      <!-- Botones links redes -->
+      <div class="container bg-dark rounded-bottom btn-links">
+        <div class="row justify-content-center text-light">
+          <div class="col-auto">
+            <a href="{{ p.linkedin }}" Target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+          </div>
+          <div class="col-auto">
+            <a href="{{ p.github }}" Target="_blank">
+              <i class="bi bi-github"></i>
+            </a>
+          </div>
+          <div class="col-auto">
+            <a href="{{ p.email }}" Target="_blank">
+              <i class="bi bi-envelope-fill"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
 </div>

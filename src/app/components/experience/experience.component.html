@@ -1,10 +1,199 @@
-<p class="h2 text-center mt-3 mb-3">EXPERIENCIA</p>
-<div class="container shadow text-center bg-light">
-  <div class="row pt-3">
-    <div class="column">
-      <p>Soporte Tecnico Computadoras (Autonomo)</p>
-      <p>Plan Argentina Programa</p>
-      <p>2021-2022</p>
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="experienciaModalCenter"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Nuevo</h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="experienciaForm" (ngSubmit)="onSubmit()">
+          <input type="hidden" name="id" formControlName="id" />
+          <input type="hidden" name="persona" formControlName="persona" />
+          <div class="form-group">
+            <label for="descripcion">Puesto</label>
+            <input
+              type="text"
+              formControlName="puesto"
+              name="puesto"
+              class="form-control"
+              placeholder="Ingrese una puesto"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.experienciaForm.get('puesto')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Lugar</label>
+            <input
+              type="text"
+              formControlName="lugar"
+              name="lugar"
+              class="form-control"
+              placeholder="Ingrese una lugar"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.experienciaForm.get('lugar')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Tipo Trabajo</label>
+            <input
+              type="text"
+              formControlName="tipo_trabajo"
+              name="tipo_trabajo"
+              class="form-control"
+              placeholder="Ingrese una tipo de trabajo"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.experienciaForm.get('tipo_trabajo')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <textarea
+              formControlName="descripcion"
+              name="descripcion"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+              rows="3"
+            ></textarea>
+            <span
+              class="text-danger"
+              *ngIf="this.experienciaForm.get('descripcion')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Año de inicio</label>
+            <input
+              type="text"
+              formControlName="anio_inicio"
+              name="anio_inicio"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.experienciaForm.get('anio_inicio')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+
+            <label for="descripcion">Año de finalizacion</label>
+            <input
+              type="text"
+              formControlName="anio_finalizacion"
+              name="anio_finalizacion"
+              class="form-control"
+              placeholder="Ingrese una descripcion"
+            />
+            <span
+              class="text-danger"
+              *ngIf="this.experienciaForm.get('anio_finalizacion')?.errors?.['required']"
+            >
+              este campo no puede quedar vacío
+            </span>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
+<!-- FIN MODAL -->
+
+<p class="h2 text-center text-muted mt-5 mb-3">EXPERIENCIA</p>
+<div class="container">
+  <div class="row text-center">
+    <div class="col pt-2" *ngFor="let e of experienciaList; let i = index">
+      <div class="card text-center border bg-light pt-2">
+        <div class="container bg-dark btn-links p-2">
+          <div
+            *ngIf="userLogin == 1"
+            class="row justify-content-end text-light"
+          >
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#experienciaModalCenter"
+                (click)="onEditExperiencia(i)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </div>
+            <div class="col-auto">
+              <button
+                type="button"
+                class="btn btn-sm btn-danger"
+                (click)="onDeleteExperiencia(i)"
+              >
+                <i class="bi bi-x-square"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="pt-5">
+          <i class="bi bi-nut-fill" style="font-size: 2rem"></i>
+        </p>
+        <p class="lead">{{ e.puesto }}</p>
+        <p class="lead">{{ e.lugar }}</p>
+        <p class="lead">{{ e.tipo_trabajo }}</p>
+        <p class="lead">{{ e.descripcion }}</p>
+        <p class="lead">{{ e.anio_inicio }} - {{ e.anio_finalizacion }}</p>
+      </div>
+    </div>
+    <div *ngIf="userLogin == 1" class="row text-center">
+      <div class="col pt-5 align-self-center">
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#experienciaModalCenter"
+          (click)="onNewExperiencia()"
+        >
+          <i class="bi bi-plus-square"></i>
+        </button>
+      </div>
+    </div>
+
+    <span class="pb-5"></span>
   </div>
 </div>

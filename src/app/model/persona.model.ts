@@ -1,26 +1,38 @@
 export class persona {
-    id?: number;
-    nombre: String;
-    apellido: String;
-    direccion: String;
-    email: String;
-    telefono: String;
-    profesion: String;
-    sobremi: String;
-    github: String;
-    linkedin: String;
+  id?: number;
+  nombre: String;
+  apellido: String;
+  direccion: String;
+  email: String;
+  telefono: String;
+  profesion: String;
+  sobremi: String;
+  github: String;
+  linkedin: String;
+  edad: String;
+  linkcv?: String;
 
-    constructor(nombre: String, apellido: String, direccion: String, email: String,
-        telefono: String, profesion: String, sobremi: String, github: String,
-        linkedin: String) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.email = email;
-        this.telefono = telefono;
-        this.profesion = profesion;
-        this.sobremi = sobremi;
-        this.github = github;
-        this.linkedin = linkedin;
-    }
+  constructor(
+    nombre: String,
+    apellido: String,
+    direccion: String,
+    email: String,
+    telefono: String,
+    profesion: String,
+    sobremi: String,
+    github: String,
+    linkedin: String,
+    edad: String
+  ) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.direccion = direccion;
+    this.email = email;
+    this.telefono = telefono;
+    this.profesion = profesion;
+    this.sobremi = sobremi;
+    this.github = github;
+    this.linkedin = linkedin;
+    this.edad = edad;
+  }
 }
