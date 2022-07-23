@@ -1,18 +1,24 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { educacion } from '../model/educacion.model';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  }),
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class EducacionService {
-  // URL = 'http://localhost:8080/';
-  URL = 'https://still-reef-69263.herokuapp.com:3306/';
+  URL = 'https://still-reef-69263.herokuapp.com/';
   constructor(private http: HttpClient) {}
 
   public obtenerEducacion(): Observable<educacion> {
-    return this.http.get<educacion>(this.URL + 'educacion/traer');
+    return this.http.get<educacion>(this.URL + 'educacion/traer', httpOptions);
   }
 
   public guardarEducacion(e: educacion): Observable<educacion> {
