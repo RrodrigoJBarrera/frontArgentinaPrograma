@@ -3,13 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { educacion } from '../model/educacion.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-  }),
-};
-
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +11,7 @@ export class EducacionService {
   constructor(private http: HttpClient) {}
 
   public obtenerEducacion(): Observable<educacion> {
-    return this.http.get<educacion>(this.URL + 'educacion/traer', httpOptions);
+    return this.http.get<educacion>(this.URL + 'educacion/traer');
   }
 
   public guardarEducacion(e: educacion): Observable<educacion> {

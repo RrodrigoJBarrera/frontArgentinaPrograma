@@ -17,18 +17,15 @@ export class ExperienciaService {
   constructor(private http: HttpClient) {}
 
   public obtenerExperiencia(): Observable<experiencia> {
-    return this.http.get<experiencia>(
-      this.URL + 'experiencia/traer',
-      httpOptions
-    );
+    return this.http.get<experiencia>(this.URL + 'experiencia/traer');
   }
 
   public guardarExperiencia(e: experiencia): Observable<experiencia> {
-    return this.http.post<any>(this.URL + 'experiencia/crear', e, httpOptions);
+    return this.http.post<any>(this.URL + 'experiencia/crear', e);
   }
 
   public modificarExperiencia(e: experiencia): Observable<experiencia> {
-    return this.http.put<any>(this.URL + 'experiencia/editar', e, httpOptions);
+    return this.http.put<any>(this.URL + 'experiencia/editar', e);
   }
 
   public eliminarExperiencia(id: number): Observable<experiencia> {

@@ -17,18 +17,15 @@ export class HabilidadService {
   constructor(private http: HttpClient) {}
 
   public obtenerHabilidad(): Observable<habilidades> {
-    return this.http.get<habilidades>(
-      this.URL + 'habilidad/traer',
-      httpOptions
-    );
+    return this.http.get<habilidades>(this.URL + 'habilidad/traer');
   }
 
   public guardarHabilidad(h: habilidades): Observable<habilidades> {
-    return this.http.post<any>(this.URL + 'habilidad/crear', h, httpOptions);
+    return this.http.post<any>(this.URL + 'habilidad/crear', h);
   }
 
   public modificarHabilidad(h: habilidades): Observable<habilidades> {
-    return this.http.put<any>(this.URL + 'habilidad/editar', h, httpOptions);
+    return this.http.put<any>(this.URL + 'habilidad/editar', h);
   }
 
   public eliminarHabilidad(id: number): Observable<habilidades> {
