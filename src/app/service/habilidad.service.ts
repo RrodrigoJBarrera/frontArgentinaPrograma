@@ -1,7 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { habilidades } from '../model/habilidades.model';
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  }),
+};
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +17,18 @@ export class HabilidadService {
   constructor(private http: HttpClient) {}
 
   public obtenerHabilidad(): Observable<habilidades> {
-    return this.http.get<habilidades>(this.URL + 'habilidad/traer');
+    return this.http.get<habilidades>(
+      this.URL + 'habilidad/traer',
+      httpOptions
+    );
   }
 
   public guardarHabilidad(h: habilidades): Observable<habilidades> {
-    return this.http.post<any>(this.URL + 'habilidad/crear', h);
+    return this.http.post<any>(this.URL + 'habilidad/crear', h, httpOptions);
   }
 
   public modificarHabilidad(h: habilidades): Observable<habilidades> {
-    return this.http.put<any>(this.URL + 'habilidad/editar', h);
+    return this.http.put<any>(this.URL + 'habilidad/editar', h, httpOptions);
   }
 
   public eliminarHabilidad(id: number): Observable<habilidades> {
